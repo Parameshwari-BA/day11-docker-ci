@@ -1,0 +1,18 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  imageName: devopsdemo
+
+steps:
+- task: Docker@2
+  inputs:
+    containerRegistry: 'azurecr3128'
+    repository: $(imageName)
+    command: buildAndPush
+    Dockerfile: '**/Dockerfile'
+    tags: |
+      latest
